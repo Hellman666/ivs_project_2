@@ -1,0 +1,45 @@
+termíny:
+	- návrh grafického rozhraní: 			do 26.3
+	- implementace grafického rohraní: 		do 2.4
+	- hlavicka matematických funkcí: 		do 26.3
+	- testy matematických funkcí:			do 2.4
+	- implementace matematických funkcí: 	do 9.4
+	- debugging: 					do 16.4
+	- dokumentace: 					do 26.4
+	- profiling: 					do 23.4
+
+rozdělení úkolů:
+	xborek12
+		- návrh grafického rozhraní
+		- implementace grafického rohraní
+		- debugging matematické grafického rozhraní
+		- dokumentace
+
+	xjestr04
+		- hlavicka matematických funkcí
+		- implementace matematických funkcí
+		- debugging matematické funkce
+		- dokumentace
+		- profiling
+
+	xhrubo01
+		- testy matematických funkcí
+		- implementace matematických funkcí				
+		- debugging matematické funkce
+		- dokumentace
+
+zvolené komunikační kanály:
+	- discord
+	- asana
+
+stanovená pravidla pro komunikaci:
+	- každý problém řešit ve specifickém vlákně na discordu
+	- vlákna se dají vytvořit v místnosti ivs-project
+
+systém pro správu verzí a hosting:
+	-git
+	- github
+		- přidělení do repozitáře pomocí emailu
+
+
+	
