@@ -90,7 +90,7 @@ float fact(int a) {
  * @param n Prirozeny rad mocniny 
  * @return Vysledek umocneni typu float nebo -1 pri chybe
  */
-float power() {
+float power(float a, int n) {
     return -1;
 }
 
@@ -101,6 +101,6 @@ float power() {
  * @param n Prirozeny rad odmocniny 
  * @return Vysledek odmocneni typu float nebo -1 pri chybe
  */
-float root() {
+float root(float a, int n) {
     return -1;
 }

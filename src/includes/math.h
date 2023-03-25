@@ -80,7 +80,7 @@ float fact(int);
  * @param n Prirozeny rad mocniny 
  * @return Vysledek umocneni typu float nebo -1 pri chybe
  */
-float power();
+float power(float a, int n);
 
 /**
  * @details Funkce pro odmocneni hodnoty n-teho radu        
@@ -89,6 +89,6 @@ float power();
  * @param n Prirozeny rad odmocniny 
  * @return Vysledek odmocneni typu float nebo -1 pri chybe
  */
-float root();
+float root(float a, int n);
 
 #endif
