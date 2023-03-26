@@ -8,8 +8,8 @@ cmake_minimum_required(VERSION 3.16)
 #set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/appicon.rc") todo doplnit ikonku aplikace   
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER  ${GCC_PATH}/bin/g++.exe)
-set(CMAKE_C_COMPILER  ${GCC_PATH}/bin/gcc.exe)
+set(CMAKE_CXX_COMPILER  ${GCC_PATH}/bin/g++)
+set(CMAKE_C_COMPILER  ${GCC_PATH}/bin/gcc)
 
 project(Kalkulacka)
 
