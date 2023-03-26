@@ -1,6 +1,6 @@
 /**
  * @file    math.h
- * @authors Jmeno Prijmneni <xlogin00>,
+ * @authors Radek Jestrabik <xjestr04>,
  *          Jmeno Prijmneni <xkento00>
  * @version 1.0
  *
@@ -23,45 +23,45 @@
 /**
  * @details Funkce pro scitani dvou hodnot
  * 
- * @param a Prvni hodnota float/int
- * @param b Druha hodnota float/int
- * @return Vysledek scitani typu float
+ * @param a Prvni hodnota double/int
+ * @param b Druha hodnota double/int
+ * @return Vysledek scitani typu double
  */
-float sum(float, float);
+double sum(double, double);
 
 /**
  * @details Funkce pro odcitani dvou hodnot
  * 
- * @param a Prvni hodnota float/int
- * @param b Druha hodnota float/int
- * @return Vysledek odcitani typu float
+ * @param a Prvni hodnota double/int
+ * @param b Druha hodnota double/int
+ * @return Vysledek odcitani typu double
  */
-float sub(float, float);
+double sub(double, double);
 
 /**
  * @details Funkce pro nasobeni dvou hodnot
  * 
- * @param a Prvni hodnota float/int
- * @param b Druha hodnota float/int
- * @return Vysledek nasobeni typu float
+ * @param a Prvni hodnota double/int
+ * @param b Druha hodnota double/int
+ * @return Vysledek nasobeni typu double
  */
-float mul(float, float);
+double mul(double, double);
 
 /**
  * @details Funkce pro deleni dvou hodnot
  * 
- * @param a Prvni hodnota float/int
- * @param b Druha hodnota float/int
- * @return Vysledek deleni typu float
+ * @param a Prvni hodnota double/int
+ * @param b Druha hodnota double/int
+ * @return Vysledek deleni typu double
  */
-float div(float, float);
+double div(double, double);
 
 /**
- * @details Funkce pro celociselni deleni dvou hodnot
+ * @details Funkce pro celociselne deleni dvou hodnot
  * 
- * @param a Prvni hodnota float/int
- * @param b Druha hodnota float/int
- * @return Vysledek deleni typu float
+ * @param a Prvni hodnota int
+ * @param b Druha hodnota int
+ * @return Vysledek deleni typu pair<int, int>, kde prvni hodnota predstavuje vysledek a druha zbytek
  */
 std::pair<int, int> idiv(int, int);
 
@@ -69,26 +69,26 @@ std::pair<int, int> idiv(int, int);
  * @details Funkce pro vypocet faktorialu
  * 
  * @param a Pocatecni hodnota faktorialu
- * @return Vysledek faktorialu typu float nebo -1 pri chybe
+ * @return Vysledek faktorialu typu double nebo -1 pri chybe
  */
-float fact(int);
+double fact(int);
 
 /**
  * @details Funkce pro umocneni hodnoty n-teho radu        
  * 
  * @param a Pocatecni hodnota mocniny
  * @param n Prirozeny rad mocniny 
- * @return Vysledek umocneni typu float nebo -1 pri chybe
+ * @return Vysledek umocneni typu double nebo -1 pri chybe
  */
-float power(float a, int n);
+double power(double a, int n);
 
 /**
  * @details Funkce pro odmocneni hodnoty n-teho radu        
  * 
  * @param a Pocatecni hodnota odmocniny
  * @param n Prirozeny rad odmocniny 
- * @return Vysledek odmocneni typu float nebo -1 pri chybe
+ * @return Vysledek odmocneni typu double nebo -1 pri chybe
  */
-float root(float a, int n);
+double root(double a, int n);
 
 #endif
