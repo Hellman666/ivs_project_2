@@ -69,7 +69,7 @@ std::pair<int, int> idiv(int, int);
  * @details Funkce pro vypocet faktorialu
  * 
  * @param a Pocatecni hodnota faktorialu
- * @return Vysledek faktorialu typu double nebo -1 pri chybe
+ * @return Vysledek faktorialu typu double nebo vyvola std::runtime_error pri chybe
  */
 double fact(int);
 
@@ -78,7 +78,7 @@ double fact(int);
  * 
  * @param a Pocatecni hodnota mocniny
  * @param n Prirozeny rad mocniny 
- * @return Vysledek umocneni typu double nebo -1 pri chybe
+ * @return Vysledek umocneni typu double nebo vyvola std::runtime_error pri chybe
  */
 double power(double a, int n);
 
@@ -87,7 +87,7 @@ double power(double a, int n);
  * 
  * @param a Pocatecni hodnota odmocniny
  * @param n Prirozeny rad odmocniny 
- * @return Vysledek odmocneni typu double nebo -1 pri chybe
+ * @return Vysledek odmocneni typu double nebo vyvola std::runtime_error pri chybe
  */
 double root(double a, int n);
 
