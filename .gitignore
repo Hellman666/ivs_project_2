@@ -27,3 +27,12 @@
 *.exe
 *.out
 *.app
+
+# Environment files
+*.env.*
+
+# Build folder
+build/*
+
+# VSCode folder
+.vscode
