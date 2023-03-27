@@ -27,7 +27,12 @@
  * @return Vysledek scitani typu double
  */
 double sum(double a, double b) {
-    return (double)(a + b);
+    long double result = (long double) (a + b);
+    
+    if (result > DBL_MAX || result < -DBL_MAX)
+        throw std::runtime_error("Prilis velke cislo");
+
+    return (double)result;
 }
 
 /**
@@ -38,7 +43,12 @@ double sum(double a, double b) {
  * @return Vysledek odcitani typu double
  */
 double sub(double a, double b) {
-    return (double)(a - b);
+    long double result = (long double) (a - b);
+    
+    if (result > DBL_MAX || result < -DBL_MAX)
+        throw std::runtime_error("Prilis velke cislo");
+
+    return (double)result;
 }
 
 /**
@@ -49,7 +59,12 @@ double sub(double a, double b) {
  * @return Vysledek nasobeni typu double
  */
 double mul(double a, double b) {
-    return (double)(a * b);
+    long double result = (long double) (a * b);
+    
+    if (result > DBL_MAX || result < -DBL_MAX)
+        throw std::runtime_error("Prilis velke cislo");
+
+    return (double)result;
 }
 
 /**
@@ -60,7 +75,15 @@ double mul(double a, double b) {
  * @return Vysledek deleni typu double
  */
 double div(double a, double b) {
-    return (double)(a / b);
+    if (b == 0)
+        throw std::runtime_error("Deleni nulou");
+
+    long double result = (a / b);
+
+    if (result > DBL_MAX || result < -DBL_MAX)
+        throw std::runtime_error("Prilis velke cislo");
+
+    return (double)result;
 }
 
 /**
@@ -71,7 +94,14 @@ double div(double a, double b) {
  * @return Vysledek deleni typu pair<int, int>, kde prvni hodnota predstavuje vysledek a druha zbytek
  */
 std::pair<int, int> idiv(int a, int b) {
-    int res = 0, rem = 0;
+    if (b == 0)
+        throw std::runtime_error("Deleni nulou");
+
+    int res, rem;
+
+    res = (int)(a / b);
+    rem = (int)(a % b);
+
     return std::make_pair(res, rem);
 }
 
