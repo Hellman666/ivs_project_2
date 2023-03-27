@@ -19,7 +19,7 @@
 #include <gmock/gmock.h>
 #include <stdio.h>
 
-#include <limits>
+#include <float.h>
 
 #include "gtest/gtest.h"
 
@@ -29,77 +29,77 @@ using namespace ::testing;
  * sum Tests
  */
 TEST(SumTest, IntegerInput) {
-    EXPECT_FLOAT_EQ(sum(1, 1), 2);
+    EXPECT_NEAR(sum(1, 1), 2, 0.000000001);
 }
 
-TEST(SumTest, FloatInput) {
-    EXPECT_FLOAT_EQ(sum(1.0005f, 1.0005f), 2.001f);
+TEST(SumTest, DoubleInput) {
+    EXPECT_NEAR(sum(1.0005, 1.0005), 2.001, 0.000000001);
 }
 
 TEST(SumTest, ZeroInput) {
-    EXPECT_FLOAT_EQ(sum(0.f, 0.f), 0.f);
+    EXPECT_NEAR(sum(0., 0.), 0., 0.000000001);
 }
 
 TEST(SumTest, NegativeInput) {
-    EXPECT_FLOAT_EQ(sum(-10.f, -10.f), -20.f);
+    EXPECT_NEAR(sum(-10., -10.), -20., 0.000000001);
 }
 
-TEST(SumTest, MaxFloatInput) {
-    EXPECT_THROW(sum(FLT_MAX, 1), std::runtime_error);
+TEST(SumTest, MaxDoubleInput) {
+    EXPECT_THROW(sum(DBL_MAX, 1), std::runtime_error);
 }
 
 /**
  * sub Tests
  */
 TEST(SubTest, IntegerInput) {
-    EXPECT_FLOAT_EQ(sub(123, 123), 0);
+    EXPECT_NEAR(sub(123, 123), 0, 0.000000001);
 }
 
-TEST(SubTest, FloatInput) {
-    EXPECT_NEAR(sub(1.00010f, 1.00005f), 0.00005f, 0.001);
+TEST(SubTest, DoubleInput) {
+    EXPECT_NEAR(sub(1.00010, 1.00005), 0.00005, 0.000000001);
 }
 
 TEST(SubTest, ZeroInput) {
-    EXPECT_FLOAT_EQ(sub(0.f, 0.f), 0);
+    EXPECT_NEAR(sub(0., 0.), 0, 0.000000001);
 }
 
 TEST(SubTest, NegativeNegativeInput) {
-    EXPECT_FLOAT_EQ(sub(-10.f, -10.f), 0.f);
+    EXPECT_NEAR(sub(-10., -10.), 0., 0.000000001);
 }
 
 TEST(SubTest, NegativePositiveInput) {
-    EXPECT_FLOAT_EQ(sub(-10.f, 10.f), -20.f);
+    EXPECT_NEAR(sub(-10., 10.), -20., 0.000000001);
 }
 
-TEST(SubTest, MaxFloatInput) {
-    EXPECT_THROW(sub(FLT_MAX, -1), std::runtime_error);
+TEST(SubTest, MaxDoubleInput) {
+    EXPECT_THROW(sub(DBL_MAX, -1), std::runtime_error);
 }
 
 /**
  * mul Tests
  */
 TEST(MulTest, IntegerInput) {
-    EXPECT_FLOAT_EQ(mul(42, 69), 2898);
+    EXPECT_NEAR(mul(42, 69), 2898, 0.000000001);
 }
 
-TEST(MulTest, FloatInput) {
-    EXPECT_FLOAT_EQ(mul(1.00005f, 1.00005f), 1.0001000025f);
+TEST(MulTest, DoubleInput) {
+    EXPECT_NEAR(mul(1.00005, 1.00005), 1.0001000025, 0.000000001);
 }
 
 TEST(MulTest, ZeroInput) {
-    EXPECT_FLOAT_EQ(mul(0.f, 0.f), 0.f);
+    EXPECT_NEAR(mul(0., 0.), 0., 0.000000001);
 }
 
 TEST(MulTest, NegativeNegativeInput) {
-    EXPECT_FLOAT_EQ(mul(-10.f, -10.f), 100.f);
+    EXPECT_NEAR(mul(-10., -10.), 100., 0.000000001);
 }
 
 TEST(MulTest, NegativePositiveInput) {
-    EXPECT_FLOAT_EQ(mul(-10.f, 10.f), -100.f);
+    EXPECT_NEAR(mul(-10., 10.), -100., 0.000000001);
 }
 
-TEST(MulTest, MaxFloatInput) {
-    EXPECT_THROW(mul(FLT_MAX, 1.1f), std::runtime_error);
+TEST(MulTest, MaxDoubleInput) {
+    EXPECT_THROW(mul(DBL_MAX, 1.1), std::runtime_error);
 }
 
 /**
@@ -107,35 +107,35 @@ TEST(MulTest, MaxFloatInput) {
  * Zaokrouhlování na 15 desetinných míst
  */
 TEST(DivTest, IntegerInputReturnLessThanOne) {
-    EXPECT_FLOAT_EQ(div(42.f, 69.f), 0.608695652174f);
+    EXPECT_NEAR(div(42., 69.), 0.6086956521, 0.000000001);
 }
 
 TEST(DivTest, IntegerInputReturnMoreThanOne) {
-    EXPECT_FLOAT_EQ(div(69.f, 42.f), 1.64285714286f);
+    EXPECT_NEAR(div(69., 42.), 1.6428571428, 0.000000001);
 }
 
-TEST(DivTest, FloatInput) {
-    EXPECT_FLOAT_EQ(div(1.00005f, 2.5f), 0.40002f);
+TEST(DivTest, DoubleInput) {
+    EXPECT_NEAR(div(1.00005, 2.5), 0.40002, 0.000000001);
 }
 
 TEST(DivTest, ZeroDivisorInput) {
-    EXPECT_THROW(div(10.f, 0.f), std::runtime_error);
+    EXPECT_THROW(div(10., 0.), std::runtime_error);
 }
 
 TEST(DivTest, ZeroDividendInput) {
-    EXPECT_FLOAT_EQ(div(0.f, 1.f), 0.f);
+    EXPECT_NEAR(div(0., 1.), 0., 0.000000001);
 }
 
 TEST(DivTest, NegativeNegativeInput) {
-    EXPECT_FLOAT_EQ(div(-10.f, -10.f), 1.f);
+    EXPECT_NEAR(div(-10., -10.), 1., 0.000000001);
 }
 
 TEST(DivTest, NegativePositiveInput) {
-    EXPECT_FLOAT_EQ(div(-10.f, 10.f), -1.f);
+    EXPECT_NEAR(div(-10., 10.), -1., 0.000000001);
 }
 
-TEST(DivTest, MaxFloatInput) {
-    EXPECT_FLOAT_EQ(div(FLT_MAX, -2.f), -(FLT_MAX / 2));
+TEST(DivTest, MaxDoubleInput) {
+    EXPECT_NEAR(div(DBL_MAX, -2.), -(DBL_MAX / 2), 0.000000001);
 }
 
 /**
@@ -200,16 +200,16 @@ TEST(PowTest, IntPow) {
     EXPECT_EQ(power(2, 2), 4);
 }
 
-TEST(PowTest, FloatA) {
-    EXPECT_FLOAT_EQ(power(0.5f, 2), 0.25f);
+TEST(PowTest, DoubleA) {
+    EXPECT_NEAR(power(0.5, 2), 0.25, 0.000000001);
 }
 
 TEST(PowTest, NegativeA) {
-    EXPECT_FLOAT_EQ(power(-4.f, 2), 16.f);
+    EXPECT_NEAR(power(-4., 2), 16., 0.000000001);
 }
 
-TEST(PowTest, MaxFloat) {
-    EXPECT_THROW(power(FLT_MAX, 2), std::runtime_error);
+TEST(PowTest, MaxDouble) {
+    EXPECT_THROW(power(DBL_MAX, 2), std::runtime_error);
 }
 
 /**
@@ -219,12 +219,20 @@ TEST(RootTest, IntSquareRoot) {
     EXPECT_EQ(root(4, 2), 2);
 }
 
+TEST(RootTest, IntRootOfZero) {
+    EXPECT_EQ(root(2, 0), 0);
+}
+
+TEST(RootTest, IntZeroRoot) {
+    EXPECT_THROW(root(0, 2), std::runtime_error);
+}
+
 TEST(RootTest, IntNRoot) {
     EXPECT_EQ(root(-8, 3), -2);
 }
 
-TEST(RootTest, FloatRoot) {
-    EXPECT_EQ(root(0.25f, 2), 0.5);
+TEST(RootTest, DoubleRoot) {
+    EXPECT_EQ(root(0.25, 2), 0.5);
 }
 
 TEST(RootTest, ImpossibleRoot) {

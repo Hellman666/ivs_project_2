@@ -27,7 +27,7 @@
  * @param b Druha hodnota double/int
  * @return Vysledek scitani typu double
  */
-double sum(double, double);
+double sum(double a, double b);
 
 /**
  * @details Funkce pro odcitani dvou hodnot
@@ -36,7 +36,7 @@ double sum(double, double);
  * @param b Druha hodnota double/int
  * @return Vysledek odcitani typu double
  */
-double sub(double, double);
+double sub(double a, double b);
 
 /**
  * @details Funkce pro nasobeni dvou hodnot
@@ -45,7 +45,7 @@ double sub(double, double);
  * @param b Druha hodnota double/int
  * @return Vysledek nasobeni typu double
  */
-double mul(double, double);
+double mul(double a, double b);
 
 /**
  * @details Funkce pro deleni dvou hodnot
@@ -54,7 +54,7 @@ double mul(double, double);
  * @param b Druha hodnota double/int
  * @return Vysledek deleni typu double
  */
-double div(double, double);
+double div(double a, double b);
 
 /**
  * @details Funkce pro celociselne deleni dvou hodnot
@@ -63,7 +63,7 @@ double div(double, double);
  * @param b Druha hodnota int
  * @return Vysledek deleni typu pair<int, int>, kde prvni hodnota predstavuje vysledek a druha zbytek
  */
-std::pair<int, int> idiv(int, int);
+std::pair<int, int> idiv(int a, int b);
 
 /**
  * @details Funkce pro vypocet faktorialu
