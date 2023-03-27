@@ -184,9 +184,9 @@ TEST(FactTest, FactWithinULLRange) {
     EXPECT_LT(fact(20), ULLONG_MAX);
 }
 
-// 20 je největší faktoriál, který lze spočítat na ULL
+// 170 je největší faktoriál, který lze spočítat na double
 TEST(FactTest, FactOverULLRange) {
-    EXPECT_THROW(fact(21), std::runtime_error);
+    EXPECT_THROW(fact(171), std::runtime_error);
 }
 
 TEST(FactTest, NegativeInput) {
@@ -220,11 +220,11 @@ TEST(RootTest, IntSquareRoot) {
 }
 
 TEST(RootTest, IntRootOfZero) {
-    EXPECT_EQ(root(2, 0), 0);
+    EXPECT_EQ(root(0, 2), 0);
 }
 
 TEST(RootTest, IntZeroRoot) {
-    EXPECT_THROW(root(0, 2), std::runtime_error);
+    EXPECT_THROW(root(2, 0), std::runtime_error);
 }
 
 TEST(RootTest, IntNRoot) {

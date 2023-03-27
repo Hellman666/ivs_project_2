@@ -16,6 +16,8 @@
  */
 
 #include <iostream>
+#include <cmath>
+#include <cfloat>
 
 /**
  * @details Funkce pro scitani dvou hodnot
@@ -80,7 +82,15 @@ std::pair<int, int> idiv(int a, int b) {
  * @return Vysledek faktorialu typu double nebo vyvola std::runtime_error pri chybe
  */
 double fact(int a) {
-    return -1;
+    if (a < 0)
+        throw std::runtime_error("Neplatne cislo (mensi nez 0)");
+
+    double result = tgamma(a+1);
+
+    if (std::isinf(result))
+        throw std::runtime_error("Prilis velke cislo");
+
+    return result;
 }
 
 /**
@@ -91,7 +101,11 @@ double fact(int a) {
  * @return Vysledek umocneni typu double nebo vyvola std::runtime_error pri chybe
  */
 double power(double a, int n) {
-    return -1;
+    double result = std::pow(a, n);
+    
+    if (result > DBL_MAX)
+        throw std::runtime_error("Prilis velke cislo");
+    return result;
 }
 
 /**
@@ -102,5 +116,15 @@ double power(double a, int n) {
  * @return Vysledek odmocneni typu double nebo vyvola std::runtime_error pri chybe
  */
 double root(double a, int n) {
-    return -1;
+    if ( n == 0)
+        throw std::runtime_error("Nulta odmocnina neexistuje");
+    if (a < 0 && n % 2 == 0)
+        throw std::runtime_error("Nelze udelat sudou odmocninu ze zaporneho cisla");
+
+    double result = std::pow(std::abs(a), 1.0/n) * (a >= 0 ? 1 : -1);
+
+    if (std::isnan(result))
+        throw std::runtime_error("Neplatna operace");
+
+    return result;
 }
