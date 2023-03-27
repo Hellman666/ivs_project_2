@@ -12,20 +12,21 @@ rozdělení úkolů:
 	xborek12
 		- návrh grafického rozhraní
 		- implementace grafického rohraní
-		- debugging matematické grafického rozhraní
 		- dokumentace
 
 	xjestr04
-		- hlavicka matematických funkcí
 		- implementace matematických funkcí
 		- debugging matematické funkce
 		- dokumentace
-		- profiling
 
 	xhrubo01
 		- testy matematických funkcí
-		- implementace matematických funkcí				
 		- debugging matematické funkce
+		- dokumentace
+
+	xkento00
+		- hlavicka matematických funkcí
+		- profiling
 		- dokumentace
 
 zvolené komunikační kanály:
