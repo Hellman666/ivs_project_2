@@ -16,6 +16,9 @@
  */
 
 #include <iostream>
+#include <string.h>
+#include <stack>
+
 #include "includes/math.h"
 
 /**
@@ -24,8 +27,35 @@
  * @return 0 pri ukonceni programu, jinak hodnota chyby
  */
 int main() {
-    std::pair<int, int> Result = idiv(2, 1);
-    std::cout<<Result.first<<' '<<Result.second;
+
+    /*
+     * - Pouziti idiv funkce
+     *
+     * std::pair<int, int> Result = idiv(2, 1);
+     * std::cout<<Result.first<<' '<<Result.second<<'\n';
+     */
     
+    /*
+     * - Pouziti zasobniku
+     *
+     * std::stack<std::string> Stack;       Inicializace
+     * 
+     * Stack.push("6\0");
+     * Stack.push("*\0");
+     * Stack.push("2\0");
+     * 
+     * double b = std::stod(Stack.top());   Ulozeni dvojky
+     * Stack.pop();                         Uvolneni dvojky
+     * 
+     * Stack.pop();                         Uvolneni hviezdicky
+     * 
+     * double a = std::stod(Stack.top());   Ulozeni sestky
+     * Stack.pop();                         Uvolneni sestky
+     * 
+     * double c = div(a, b);                Vypocet
+     * Stack.push(std::to_string(c));       Pushnuti vysledku
+     * std::cout<<Stack.top()<<'\n';        Vypis vysledku
+     */
+
 	return 0;
 }
