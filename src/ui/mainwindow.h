@@ -16,6 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void NumPressed();
     void on_Number0_clicked();
     void on_Number1_clicked();
     void on_Number9_clicked();
