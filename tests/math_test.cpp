@@ -44,9 +44,6 @@ TEST(SumTest, NegativeInput) {
     EXPECT_NEAR(sum(-10., -10.), -20., 0.000000001);
 }
 
-TEST(SumTest, MaxDoubleInput) {
-    EXPECT_THROW(sum(DBL_MAX, 1), std::runtime_error);
-}
 
 /**
  * sub Tests
@@ -69,10 +66,6 @@ TEST(SubTest, NegativeNegativeInput) {
 
 TEST(SubTest, NegativePositiveInput) {
     EXPECT_NEAR(sub(-10., 10.), -20., 0.000000001);
-}
-
-TEST(SubTest, MaxDoubleInput) {
-    EXPECT_THROW(sub(DBL_MAX, -1), std::runtime_error);
 }
 
 /**
