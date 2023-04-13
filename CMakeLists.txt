@@ -3,8 +3,19 @@
 # and then: cmake --build .
 # to run tests: math_test
 cmake_minimum_required(VERSION 3.5)
+
+include(./.env.cmake OPTIONAL RESULT_VARIABLE LOCAL_ENV)
+# example of ./.env.cmake
+#
+# STRING(STRIP "C:/Qt/6.5.0/mingw_64" QT_MINGW_PATH)
+#
+
+set(CMAKE_GENERATOR "Ninja")
+set(CMAKE_BUILD_TYPE "Debug")
+set(QT_QMAKE_EXECUTABLE "${QT_MINGW_PATH}/bin/qmake.exe")
+set(CMAKE_PREFIX_PATH "${QT_MINGW_PATH}/lib/cmake")
+
 project(Kalkulacka VERSION 0.1 LANGUAGES CXX)
-#include(./.env.cmake OPTIONAL RESULT_VARIABLE LOCAL_ENV)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -14,8 +25,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0")
-#set(CMAKE_CXX_COMPILER  ${GCC_CPP_PATH})
-#set(CMAKE_C_COMPILER  ${GCC_C_PATH})
 
 set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/src/ui/icon.ico")
 
