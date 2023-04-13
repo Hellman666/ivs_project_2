@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 void MainWindow::on_Number0_clicked()
 {
     qDebug() <<"0";
