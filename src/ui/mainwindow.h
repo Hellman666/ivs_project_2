@@ -16,16 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_Number0_clicked();
-    void on_Number1_clicked();
-    void on_Number9_clicked();
-    void on_Number2_clicked();
-    void on_Number3_clicked();
-    void on_Number4_clicked();
-    void on_Number5_clicked();
-    void on_Number6_clicked();
-    void on_Number7_clicked();
-    void on_Number8_clicked();
+    void on_NumberButton_clicked();
     void on_Dot_clicked();
     void on_Equals_clicked();
     void on_Div_clicked();
