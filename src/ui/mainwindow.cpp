@@ -2,8 +2,15 @@
 #include "./ui_mainwindow.h"
 #include <QDebug>
 
-
-double calcVal = 0.0;
+double calcValidation;
+bool divide = false;
+bool plus = false;
+bool minus = false;
+bool mul = false;
+bool root = false;
+bool idiv = false;
+bool fact = false;
+bool dot = false;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,23 +22,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Rest_of_number->setStyleSheet("QLineEdit {color: white; background-color: #284b63; padding: 10px; color: white; border-width: 2px; border-radius: 15px; border-color: #b8cbd8; }");
     ui->Display->setStyleSheet("QLineEdit {color: white; background-color: #284b63; padding: 10px; color: white; border-style: outset; border-width: 2px; border-radius: 15px; border-color: #b8cbd8; }");
 
-    // Put 0.0 in Display
-    ui->Display->setText(QString::number(calcVal));
-
     // Will hold references to all the number buttons
-    QPushButton *numButtons[10];
+    QPushButton *num[10];
 
     // Cycle through locating the buttons
     for(int i = 0; i < 10; ++i){
-        QString butName = "Button" + QString::number(i);
+        QString buttonName = "Number" + QString::number(i);
 
         // Get the buttons by name and add to array
-        numButtons[i] = MainWindow::findChild<QPushButton *>(butName);
+        num[i] = MainWindow::findChild<QPushButton *>(buttonName);
 
         // When the button is released call num_pressed()
-        connect(numButtons[i], SIGNAL(released()), this,
-                SLOT(NumPressed()));
+        connect(num[i], SIGNAL(released()), this, SLOT(NumPressed()));
     }
+
 }
 
 MainWindow::~MainWindow()
@@ -45,30 +49,57 @@ void MainWindow::NumPressed(){
     QPushButton *button = (QPushButton *)sender();
 
     // Get number on button
-    QString butVal = button->text();
+    QString butonValidation = button->text();
 
     // Get the value in the display
-    QString displayVal = ui->Display->text();
+    QString displayValidation = ui->Display->text();
 
-    if((displayVal.toDouble() == 0) || (displayVal.toDouble() == 0.0)){
+    if((displayValidation.toDouble() == 0) || (displayValidation.toDouble() == 0.0)){
 
-        // calcVal = butVal.toDouble();
-        ui->Display->setText(butVal);
+        // calcVal = butonValidation.toDouble();
+        ui->Display->setText(butonValidation);
 
     } else {
         // Put the new number to the right of whats there
-        QString newVal = displayVal + butVal;
+        QString newValidation = displayValidation + butonValidation;
 
         // Double version of number
-        double dblNewVal = newVal.toDouble();
+        double dblNewValidation = newValidation.toDouble();
 
-        // calcVal = newVal.toDouble();
+        //calcValidation = newValidation.toDouble();
 
         // Set value in display and allow up to 16
         // digits before using exponents
-        ui->Display->setText(QString::number(dblNewVal, 'g', 16));
+        ui->Display->setText(QString::number(dblNewValidation, 'g', 16));
 
     }
+}
+
+void MainWindow::MathFunctionPressed()
+{
+    // Store current value in Display
+    QString displayValidation = ui->Display->text();
+    calcValidation = displayValidation.toDouble();
+
+    // Sender returns a pointer to the button pressed
+    QPushButton *button = (QPushButton *)sender();
+
+    QString butVal = button->text();
+
+        if(QString::compare(butVal, "/", Qt::CaseInsensitive) == 0){
+            divide = true;
+        } else if(QString::compare(butVal, "*", Qt::CaseInsensitive) == 0){
+            mul = true;
+        } else if(QString::compare(butVal, ".", Qt::CaseInsensitive) == 0){
+            dot = true;
+        } else if(QString::compare(butVal, "+", Qt::CaseInsensitive) == 0){
+            plus = true;
+        } else {
+            minus = true;
+        }
+
+        // Clear display
+        ui->Display->setText("");
 }
 
 void MainWindow::on_Number0_clicked()
@@ -130,7 +161,6 @@ void MainWindow::on_Number9_clicked()
 {
     qDebug() <<"9";
 }
-
 
 void MainWindow::on_Dot_clicked()
 {
