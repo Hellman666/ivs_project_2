@@ -3,16 +3,6 @@
 #include <QDebug>
 #include <QtMath>
 
-double calcValue;
-bool divide = false;
-bool plus = false;
-bool minus = false;
-bool mul = false;
-bool root = false;
-bool idiv = false;
-bool fact = false;
-bool dot = false;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -44,129 +34,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::NumPressed(){
-
-//    // Sender returns a pointer to the button pressed
-//    QPushButton *button = (QPushButton *)sender();
-
-//    // Get number on button
-//    QString butonValidation = button->text();
-
-//    // Get the value in the display
-//    QString displayValidation = ui->Display->text();
-
-//    if((displayValidation.toDouble() == 0) || (displayValidation.toDouble() == 0.0)){
-
-//        // calcVal = butonValidation.toDouble();
-//        ui->Display->setText(butonValidation);
-
-//    } else {
-//        // Put the new number to the right of whats there
-//        QString newValidation = displayValidation + butonValidation;
-
-//        // Double version of number
-//        double dblNewValidation = newValidation.toDouble();
-
-//        // calcValue = newValidation.toDouble();
-
-//        // Set value in display and allow up to 16
-//        // digits before using exponents
-//        ui->Display->setText(QString::number(dblNewValidation, 'g', 16));
-
-//    }
-}
-
-void MainWindow::MathFunctionPressed(){
-//    divide = false;
-//    plus = false;
-//    minus = false;
-//    mul = false;
-//    root = false;
-//    idiv = false;
-//    fact = false;
-//    dot = false;
-
-//    QString displayValue = ui->Display->text();
-//    calcValue = displayValue.toDouble();
-
-//    QPushButton *button = (QPushButton *)sender();
-
-//    QString buttonValue = button->text();
-
-//    if(QString::compare(buttonValue, "/", Qt::CaseInsensitive) == 0){
-//        divide = true;
-//        qDebug() << "divide true";
-//    } else if(QString::compare(buttonValue, "+", Qt::CaseInsensitive) == 0){
-//        plus = true;
-//    } else if(QString::compare(buttonValue, "-", Qt::CaseInsensitive) == 0){
-//        minus = true;
-//    } else if(QString::compare(buttonValue, "*", Qt::CaseInsensitive) == 0){
-//        mul = true;
-//    } else if(QString::compare(buttonValue, "√", Qt::CaseInsensitive) == 0){
-//        root = true;
-//    } else if(QString::compare(buttonValue, "//", Qt::CaseInsensitive) == 0){
-//        idiv = true;
-//    } else if(QString::compare(buttonValue, "!", Qt::CaseInsensitive) == 0){
-//        fact = true;
-//    } else if(QString::compare(buttonValue, ".", Qt::CaseInsensitive) == 0){
-//        dot = true;
-//    } else {
-//        qDebug() << "Neznámý znak";
-//    }
-
-//    ui->Display->setText("");
-
-}
-
-
-//double nthRoot(double x, int n) {
-//    if (x < 0 && n % 2 == 0) {
-//        // nelze vypočítat sudou odmocninu z negativního čísla
-//        return qQNaN();
-//    }
-
-//    return qPow(x, 1.0 / n);
-//}
-
-void MainWindow::EqualButtonPressed(){
-
-//    // Holds new calculation
-//    double solution = 0.0;
-
-//    // Get value in display
-//    QString displayVal = ui->Display->text();
-//    double dblDisplayVal = displayVal.toDouble();
-
-//    // Make sure a math button was pressed
-//    if(divide || plus || minus || mul || root || idiv || fact || dot ){
-//        if(divide){
-//            solution = calcValue / dblDisplayVal;
-//        } else if(plus){
-//            solution = calcValue + dblDisplayVal;
-//        } else if(minus){
-//            solution = calcValue - dblDisplayVal;
-//        } else if(mul){
-//            solution = calcValue * dblDisplayVal;
-//        } else if(root){
-//            solution = nthRoot(calcValue, dblDisplayVal);
-//        } else if(idiv){
-//            // TODO: udělat idiv
-//            solution = calcValue / dblDisplayVal;
-//        } else if(fact){
-//            // TODO: udělat fact
-//            solution = calcValue / dblDisplayVal;
-//        } else{
-//            qDebug() << "Chyba při Equal button pressed";
-//        }
-//    }
-
-//    // Put solution in display
-//    ui->Display->setText(QString::number(solution));
-
-}
-
 void MainWindow::on_Number0_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 0 do Displaye
     ui->Display->setText(ui->Display->text() + "0");
     qDebug() <<"0";
 }
@@ -174,6 +49,12 @@ void MainWindow::on_Number0_clicked()
 
 void MainWindow::on_Number1_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 1 do Displaye
     ui->Display->setText(ui->Display->text() + "1");
     qDebug() <<"1";
 }
@@ -182,6 +63,12 @@ void MainWindow::on_Number1_clicked()
 
 void MainWindow::on_Number2_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 2 do Displaye
     ui->Display->setText(ui->Display->text() + "2");
     qDebug() <<"2";
 }
@@ -189,31 +76,51 @@ void MainWindow::on_Number2_clicked()
 
 void MainWindow::on_Number3_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 3 do Displaye
     ui->Display->setText(ui->Display->text() + "3");
-
     qDebug() <<"3";
 }
 
 
 void MainWindow::on_Number4_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 4 do Displaye
     ui->Display->setText(ui->Display->text() + "4");
-
     qDebug() <<"4";
 }
 
 
 void MainWindow::on_Number5_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 5 do Displaye
     ui->Display->setText(ui->Display->text() + "5");
-
     qDebug() <<"5";
 }
 
 
 void MainWindow::on_Number6_clicked()
 {
-
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 6 do Displaye
     ui->Display->setText(ui->Display->text() + "6");
     qDebug() <<"6";
 }
@@ -221,6 +128,12 @@ void MainWindow::on_Number6_clicked()
 
 void MainWindow::on_Number7_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 7 do Displaye
     ui->Display->setText(ui->Display->text() + "7");
     qDebug() <<"7";
 }
@@ -228,6 +141,12 @@ void MainWindow::on_Number7_clicked()
 
 void MainWindow::on_Number8_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 8 do Displaye
     ui->Display->setText(ui->Display->text() + "8");
     qDebug() <<"8";
 }
@@ -235,96 +154,201 @@ void MainWindow::on_Number8_clicked()
 
 void MainWindow::on_Number9_clicked()
 {
+    // Ověří, jestli není v Diplayi výsledek, pokud je, tak vymaže Display
+    QString currentText = ui->Display->text();
+    if (currentText == "Výsledek") {
+        ui->Display->clear();
+    }
+    // vypsaní 9 do Displaye
     ui->Display->setText(ui->Display->text() + "9");
     qDebug() <<"9";
 }
 
 void MainWindow::on_Dot_clicked()
 {
-    ui->Display->setText(ui->Display->text() + ".");
-    qDebug() <<".";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní . za text v Displayi
+        ui->Display->setText(ui->Display->text() + ".");
+        qDebug() <<".";
+    }
 }
 
 
 void MainWindow::on_Equals_clicked()
 {
-    ui->Display->setText("Výsledek");
-    qDebug() <<"=";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // Výsledek výpočtu se vypíše do widgetu Display
+        ui->Display->setText("Výsledek");
+        qDebug() <<"=";
+    }
+
 }
 
 
 void MainWindow::on_Div_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "/");
-    qDebug() <<"/";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní / za text v Displayi
+        ui->Display->setText(ui->Display->text() + "/");
+        qDebug() <<"/";
+    }
 }
 
 
 void MainWindow::on_Mul_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "*");
-    qDebug() <<"*";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní * za text v Displayi
+        ui->Display->setText(ui->Display->text() + "*");
+        qDebug() <<"*";
+    }
 }
 
 
 void MainWindow::on_Minus_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "-");
-    qDebug() <<"-";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní - za text v Displayi
+        ui->Display->setText(ui->Display->text() + "-");
+        qDebug() <<"-";
+    }
 }
 
 
 void MainWindow::on_Plus_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "+");
-    qDebug() <<"+";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní + za text v Displayi
+        ui->Display->setText(ui->Display->text() + "+");
+        qDebug() <<"+";
+    }
 }
 
 
 void MainWindow::on_Root_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "√");
-    qDebug() <<"√";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní √ za text v Displayi
+        ui->Display->setText(ui->Display->text() + "√");
+        qDebug() <<"√";
+    }
 }
 
 
 void MainWindow::on_Power_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "^");
-    qDebug() <<"^";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní ^ za text v Displayi
+        ui->Display->setText(ui->Display->text() + "^");
+        qDebug() <<"^";
+    }
 }
 
 
 void MainWindow::on_Right_bracket_clicked()
 {
-    ui->Display->setText(ui->Display->text() + ")");
-    qDebug() <<")";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní ) za text v Displayi
+        ui->Display->setText(ui->Display->text() + ")");
+        qDebug() <<")";
+    }
 }
 
 
 void MainWindow::on_Left_bracket_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "(");
-    qDebug() <<"(";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní ( za text v Displayi
+        ui->Display->setText(ui->Display->text() + "(");
+        qDebug() <<"(";
+    }
 }
 
 
 void MainWindow::on_Idiv_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "//");
-    qDebug() <<"//";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní //(idiv) za text v Displayi
+        ui->Display->setText(ui->Display->text() + "//");
+        qDebug() <<"//";
+    }
 }
 
 
 void MainWindow::on_Fact_clicked()
 {
-    ui->Display->setText(ui->Display->text() + "!");
-    qDebug() <<"!";
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // vypsaní ! za text v Displayi
+        ui->Display->setText(ui->Display->text() + "!");
+        qDebug() <<"!";
+    }
 }
 
 
 void MainWindow::on_Clear_clicked()
 {
+    // Smazání všeho textu v Display
+    // TODO: aby se smazala i mezipaměť
     ui->Display->clear();
     qDebug() <<"C";
 }
@@ -332,8 +356,12 @@ void MainWindow::on_Clear_clicked()
 
 void MainWindow::on_Backspace_clicked()
 {
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
-    if (!currentText.isEmpty()) {
+
+    // Ověří se, jestli není Display prázdný a není to výsledek
+    if (!currentText.isEmpty() && currentText!="Výsledek") {
+        // Pokud není, tak odstraní poslední prvek z Displaye a
         currentText = currentText.left(currentText.length() - 1);
         ui->Display->setText(currentText);
     }
