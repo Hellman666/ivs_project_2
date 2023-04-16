@@ -21,15 +21,13 @@ Podivejte se na General Public License GNU pro vice informaci na adrese https://
 # Build
 -------
 
-- stažení MSYS2 a potřebných nástrojů
-    - na stránce [MSYS2](https://www.msys2.org/) stažení instalátoru
-    - v MSYS2/MSYS2 MINGW64 konzoli spusťte následující příkazy:
-        - pacman -S mingw-w64-x86_64-toolchain
-        - pacman -S mingw-w64-x86_64-cmake
-        - pacman -S mingw-w64-x86_64-make
+- Stažení Qt Open Source:
+    - Na stránce [QT Open Source - Download](https://www.qt.io/download-open-source) stažení instalátoru
+        - V instalaci zvolit možnosti pro MinGW 64
+- Nastavení proměnných v souboru .env.cmake (ukázka v CMakeLists.txt)
 - Vytvoření prázdné složky build
 - Ve složce build:
-    - cmake .. -G "MinGW Makefiles"
+    - cmake .. -G "Ninja"
     - cmake --build .
 
 # Spuštění
