@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QDebug>
-#include "../includes/math.h"
 #include "../includes/math.cpp"
 
 /**
@@ -170,7 +169,13 @@ void MainWindow::on_Div_clicked() {
         // vypsaní / za text v Displayi
         ui->Display->setText(ui->Display->text() + "/");
         qDebug() <<"/";
-
+        plus_use = false;
+        minus_use = false;
+        mul_use = false;
+        idiv_use = false;
+        fact_use = false;
+        root_use = false;
+        power_use = false;
         div_use = true;
     }
 }
@@ -186,7 +191,13 @@ void MainWindow::on_Mul_clicked() {
         // vypsaní * za text v Displayi
         ui->Display->setText(ui->Display->text() + "*");
         qDebug() <<"*";
-
+        plus_use = false;
+        minus_use = false;
+        idiv_use = false;
+        fact_use = false;
+        root_use = false;
+        power_use = false;
+        div_use = false;
         mul_use = true;
     }
 }
@@ -205,7 +216,12 @@ void MainWindow::on_Minus_clicked() {
 
         minus_use = true;
         plus_use = false;
-    }
+        mul_use = false;
+        idiv_use = false;
+        fact_use = false;
+        root_use = false;
+        power_use = false;
+        div_use = false;    }
 }
 
 
@@ -226,7 +242,12 @@ void MainWindow::on_Plus_clicked() {
 
         plus_use = true;
         minus_use = false;
-    }
+        mul_use = false;
+        idiv_use = false;
+        fact_use = false;
+        root_use = false;
+        power_use = false;
+        div_use = false;    }
 }
 
 
@@ -243,6 +264,13 @@ void MainWindow::on_Root_clicked() {
         qDebug() <<"√";
 
         root_use = true;
+        plus_use = false;
+        minus_use = false;
+        mul_use = false;
+        idiv_use = false;
+        fact_use = false;
+        power_use = false;
+        div_use = false;
     }
 }
 
@@ -259,6 +287,13 @@ void MainWindow::on_Power_clicked() {
         qDebug() <<"^";
 
         power_use = true;
+        plus_use = false;
+        minus_use = false;
+        mul_use = false;
+        idiv_use = false;
+        fact_use = false;
+        root_use = false;
+        div_use = false;
     }
 }
 
@@ -304,6 +339,13 @@ void MainWindow::on_Idiv_clicked() {
         qDebug() <<"//";
 
         idiv_use = true;
+        plus_use = false;
+        minus_use = false;
+        mul_use = false;
+        fact_use = false;
+        root_use = false;
+        power_use = false;
+        div_use = false;
     }
 }
 
@@ -319,6 +361,13 @@ void MainWindow::on_Fact_clicked() {
         qDebug() <<"!";
 
         fact_use = true;
+        plus_use = false;
+        minus_use = false;
+        mul_use = false;
+        idiv_use = false;
+        root_use = false;
+        power_use = false;
+        div_use = false;
     }
 }
 
@@ -329,6 +378,20 @@ void MainWindow::on_Clear_clicked() {
     ui->Display->clear();
     ui->Rest_of_number->clear();
     qDebug() <<"C";
+
+    plus_use = false;
+    minus_use = false;
+    mul_use = false;
+    idiv_use = false;
+    fact_use = false;
+    root_use = false;
+    power_use = false;
+    div_use = false;
+    qDebug() << "all false";
+    value_a = 0.0;
+    value_b = 0.0;
+    qDebug() << value_a;
+    qDebug() << value_b;
 }
 
 
