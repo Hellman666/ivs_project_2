@@ -3,10 +3,18 @@
 #include <QDebug>
 #include "../includes/math.cpp"
 
-/**
-    * @file mainwindow.cpp
-    *
-*/
+//        /**
+//            * @file mainwindow.cpp
+//            * @brief = stručný popis funkce/souboru
+//            * @author = autor
+//            * @date = datum
+//            * @param = parametr
+//            * @param
+//            * @param
+//            * ...
+//            * @return co to vrací
+//            * @see - pokud je tam odkaz na nějakou funkci, tak můžu dát odkaz na tu funkci
+//        */
 
 
 bool plus_use = false;
@@ -70,7 +78,6 @@ void MainWindow::on_Dot_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní . za text v Displayi
@@ -93,67 +100,111 @@ void MainWindow::on_Equals_clicked() {
             qDebug() << "plus = true";
             value_a = equation.split("+")[0].toDouble();
             value_b = equation.split("+")[1].toDouble();
-            double result = sum(value_a, value_b);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = sum(value_a, value_b);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (minus_use == true) {
             qDebug() << "minus = true";
             value_a = equation.split("-")[0].toDouble();
             value_b = equation.split("-")[1].toDouble();
-            double result = sub(value_a, value_b);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = sub(value_a, value_b);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (root_use == true) {
             qDebug() << "root = true";
             value_a = equation.split("√")[0].toDouble();
             value_b = equation.split("√")[1].toDouble();
-            double result = root(value_a, value_b);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = root(value_a, value_b);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (power_use == true) {
             qDebug() << "power = true";
             value_a = equation.split("^")[0].toDouble();
             value_b = equation.split("^")[1].toDouble();
-            double result = power(value_a, value_b);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = power(value_a, value_b);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (mul_use == true) {
             qDebug() << "mul = true";
             value_a = equation.split("*")[0].toDouble();
             value_b = equation.split("*")[1].toDouble();
-            double result = mul(value_a, value_b);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = mul(value_a, value_b);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (div_use == true) {
             qDebug() << "div = true";
             value_a = equation.split("/")[0].toDouble();
             value_b = equation.split("/")[1].toDouble();
-            double result = div(value_a, value_b);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = div(value_a, value_b);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (idiv_use == true) {
             qDebug() << "idiv = true";
             value_a = equation.split("//")[0].toDouble();
             value_b = equation.split("//")[1].toDouble();
-            std::pair<int, int> result = idiv(value_a, value_b);
-            ui->Display->setText(QString::number(result.first));
-            ui->Rest_of_number->setText(QString::number(result.second));
-            qDebug() << result;
+            try {
+                std::pair<int, int> result = idiv(value_a, value_b);
+                ui->Display->setText(QString::number(result.first));
+                ui->Rest_of_number->setText(QString::number(result.second));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         } else if (fact_use == true) {
             qDebug() << "fact = true";
             value_a = equation.split("!")[0].toDouble();
-            double result = fact(value_a);
-            ui->Display->setText(QString::number(result));
-            qDebug() << result;
+            try {
+                double result = fact(value_a);
+                ui->Display->setText(QString::number(result));
+                qDebug() << result;
+            }
+            catch (std::runtime_error& e) {
+                qDebug() << e.what();
+                ui->Display->setText("Error: " + QString(e.what()));
+            }
         }
 
         else {
-            qDebug() << "tyto podmínky nefungují";
+            qDebug() << "Chyba při implementaci matematických funkcí";
         }
-
-        // Výsledek výpočtu se vypíše do widgetu Display
-        // ui->Display->setText("Výsledek");
-        qDebug() << "=";
     }
 
 }
@@ -163,7 +214,6 @@ void MainWindow::on_Div_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní / za text v Displayi
@@ -185,7 +235,6 @@ void MainWindow::on_Mul_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní * za text v Displayi
@@ -207,7 +256,6 @@ void MainWindow::on_Minus_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní - za text v Displayi
@@ -232,7 +280,6 @@ void MainWindow::on_Plus_clicked() {
     // value_a = currentText.toDouble();
     // qDebug() << value_a;
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
 
@@ -255,7 +302,6 @@ void MainWindow::on_Root_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
 
@@ -279,7 +325,6 @@ void MainWindow::on_Power_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní ^ za text v Displayi
@@ -302,7 +347,6 @@ void MainWindow::on_Right_bracket_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní ) za text v Displayi
@@ -317,7 +361,6 @@ void MainWindow::on_Left_bracket_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní ( za text v Displayi
@@ -331,7 +374,6 @@ void MainWindow::on_Idiv_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // TODO: ošetřit, aby se nebral v potaz mezivýsledek
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty() && currentText!="Výsledek") {
         // vypsaní //(idiv) za text v Displayi
@@ -374,7 +416,6 @@ void MainWindow::on_Fact_clicked() {
 
 void MainWindow::on_Clear_clicked() {
     // Smazání všeho textu v Display
-    // TODO: aby se smazala i mezipaměť
     ui->Display->clear();
     ui->Rest_of_number->clear();
     qDebug() <<"C";
