@@ -31,6 +31,8 @@ private slots:
     void on_Fact_clicked();
     void on_Clear_clicked();
     void on_Backspace_clicked();
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     Ui::MainWindow *ui;
