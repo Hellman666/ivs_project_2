@@ -96,7 +96,7 @@ void MainWindow::SymCheck() {
     QString currentText = ui->Display->text();
 
     while(!std::isdigit(currentText.back().toLatin1()) && !currentText.endsWith('.')) {
-        currentText.removeLast();
+        currentText.remove(currentText.length() - 1, 1);
     }
 
     ui->Display->setText(currentText);
@@ -147,7 +147,7 @@ void MainWindow::on_Equals_clicked() {
         } else if (minus_use == true) {
             qDebug() << "minus = true";
             if(equation.startsWith('-')) {
-                equation = equation.removeFirst();
+                equation = equation.remove(0,1);
                 value_a = -1*equation.split("-")[0].toDouble();
             } else {
                 value_a = equation.split("-")[0].toDouble();
@@ -255,6 +255,13 @@ void MainWindow::on_Div_clicked() {
         // vypsaní / za text v Displayi
         ui->Display->setText(ui->Display->text() + "/");
         qDebug() << "/";
+        plus_use = false;
+        minus_use = false;
+        mul_use = false;
+        idiv_use = false;
+        fact_use = false;
+        root_use = false;
+        power_use = false;
         div_use = true;
     }
 }
@@ -274,6 +281,14 @@ void MainWindow::on_Mul_clicked() {
         ui->Display->setText(ui->Display->text() + "*");
         qDebug() << "*";
     }
+    plus_use = false;
+    minus_use = false;
+    mul_use = true;
+    idiv_use = false;
+    fact_use = false;
+    root_use = false;
+    power_use = false;
+    div_use = false;
 }
 
 /**
@@ -385,12 +400,10 @@ void MainWindow::on_Right_bracket_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // Ověří se, jestli není Display prázdný a není to výsledek
-    if (!currentText.isEmpty()) {
-        // vypsaní ) za text v Displayi
-        ui->Display->setText(ui->Display->text() + ")");
-        qDebug() << ")";
-    }
+    // vypsaní ) za text v Displayi
+    ui->Display->setText(ui->Display->text() + ")");
+    qDebug() << ")";
+
 }
 
 /**
@@ -400,12 +413,9 @@ void MainWindow::on_Left_bracket_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // Ověří se, jestli není Display prázdný a není to výsledek
-    if (!currentText.isEmpty()) {
-        // vypsaní ( za text v Displayi
-        ui->Display->setText(ui->Display->text() + "(");
-        qDebug() << "(";
-    }
+    // vypsaní ( za text v Displayi
+    ui->Display->setText(ui->Display->text() + "(");
+    qDebug() << "(";
 }
 
 /**
@@ -564,7 +574,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
         on_Power_clicked();
     } else if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         on_Equals_clicked();
-    } else if (event->key() == Qt::Key_Period || Qt::Key_Comma) {
+    } else if (event->key() == Qt::Key_Period || event->key() == Qt::Key_Comma) {
         on_Dot_clicked();
     } else {
         event->ignore();
