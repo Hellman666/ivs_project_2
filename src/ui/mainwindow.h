@@ -1,3 +1,12 @@
+/**
+ * @file mainwindow.cpp
+ *
+ * @brief deklarace rozhraní hlavního okna aplikace
+ *
+ * @author Dominik Borek (xborek12)
+ * @date 13.04.2023
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

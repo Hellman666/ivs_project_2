@@ -1,7 +1,7 @@
 /**
  * @file    math.cpp
  * @authors Radek Jestrabik <xjestr04>,
- *          Jmeno Prijmneni <xkento00>
+ *          Samuel Kentoš <xkento00>
  * @version 1.0
  *
  * @section LICENCE
