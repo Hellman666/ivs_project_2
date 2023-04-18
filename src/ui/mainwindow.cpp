@@ -8,10 +8,12 @@
  */
 
 #include "mainwindow.h"
-// #include "./ui_mainwindow.h"
+#include "./ui_mainwindow.h"
 #include <QDebug>
 #include <QKeyEvent>
-
+#include <iostream>
+#include <string>
+#include <cctype>
 #include "../includes/math.cpp"
 
 //        /**
@@ -87,11 +89,28 @@ void MainWindow::on_NumberButton_clicked() {
 }
 
 /**
+ * @brief Ověření, jestli Display končí číslem
+ */
+void MainWindow::SymCheck() {
+    // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
+    QString currentText = ui->Display->text();
+
+    while(!std::isdigit(currentText.back().toLatin1()) && !currentText.endsWith('.')) {
+        currentText.removeLast();
+    }
+
+    ui->Display->setText(currentText);
+}
+
+/**
  * @brief definice chování zmáčknutí "." (desetinné tečky)
  */
 void MainWindow::on_Dot_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
+
+    // Ověří se, jestli Display končí číslem
+    if(!std::isdigit(currentText.back().toLatin1())) return;
 
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
@@ -127,7 +146,12 @@ void MainWindow::on_Equals_clicked() {
             }
         } else if (minus_use == true) {
             qDebug() << "minus = true";
-            value_a = equation.split("-")[0].toDouble();
+            if(equation.startsWith('-')) {
+                equation = equation.removeFirst();
+                value_a = -1*equation.split("-")[0].toDouble();
+            } else {
+                value_a = equation.split("-")[0].toDouble();
+            }
             value_b = equation.split("-")[1].toDouble();
             try {
                 double result = sub(value_a, value_b);
@@ -224,18 +248,13 @@ void MainWindow::on_Div_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
+    SymCheck();
+
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
         // vypsaní / za text v Displayi
         ui->Display->setText(ui->Display->text() + "/");
         qDebug() << "/";
-        plus_use = false;
-        minus_use = false;
-        mul_use = false;
-        idiv_use = false;
-        fact_use = false;
-        root_use = false;
-        power_use = false;
         div_use = true;
     }
 }
@@ -247,19 +266,13 @@ void MainWindow::on_Mul_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
+    SymCheck();
+
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
         // vypsaní * za text v Displayi
         ui->Display->setText(ui->Display->text() + "*");
         qDebug() << "*";
-        plus_use = false;
-        minus_use = false;
-        idiv_use = false;
-        fact_use = false;
-        root_use = false;
-        power_use = false;
-        div_use = false;
-        mul_use = true;
     }
 }
 
@@ -271,7 +284,7 @@ void MainWindow::on_Minus_clicked() {
     QString currentText = ui->Display->text();
 
     // Ověří se, jestli není Display prázdný a není to výsledek
-    if (!currentText.isEmpty()) {
+    if (!currentText.isEmpty() && !currentText.endsWith('-') && !currentText.endsWith('.')) {
         // vypsaní - za text v Displayi
         ui->Display->setText(ui->Display->text() + "-");
         qDebug() << "-";
@@ -294,8 +307,7 @@ void MainWindow::on_Plus_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // value_a = currentText.toDouble();
-    // qDebug() << value_a;
+    SymCheck();
 
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
@@ -321,6 +333,8 @@ void MainWindow::on_Root_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
+    SymCheck();
+
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
         // vypsaní √ za text v Displayi
@@ -344,6 +358,8 @@ void MainWindow::on_Root_clicked() {
 void MainWindow::on_Power_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
+
+    SymCheck();
 
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
@@ -399,6 +415,8 @@ void MainWindow::on_Idiv_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
+    SymCheck();
+
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
         // vypsaní //(idiv) za text v Displayi
@@ -422,6 +440,8 @@ void MainWindow::on_Idiv_clicked() {
 void MainWindow::on_Fact_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
+
+    SymCheck();
 
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {

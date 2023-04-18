@@ -26,6 +26,7 @@ public:
 
 private slots:
     void on_NumberButton_clicked();
+    void SymCheck();
     void on_Dot_clicked();
     void on_Equals_clicked();
     void on_Div_clicked();
