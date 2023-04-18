@@ -1,6 +1,6 @@
 /**
  * @file    math.h
- * @authors Radek Jestrabik <xjestr04>,
+ * @authors Radek Jestřabík <xjestr04>,
  *          Samuel Kentoš  <xkento00>
  * @version 1.0
  *

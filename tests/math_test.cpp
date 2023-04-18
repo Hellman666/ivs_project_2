@@ -25,21 +25,21 @@
 using namespace ::testing;
 
 /**
- * @brief sečtení celých čísel
+ * @brief sčtítání celých čísel
  */
 TEST(SumTest, IntegerInput) {
     EXPECT_NEAR(sum(1, 1), 2, 0.000000001);
 }
 
 /**
- * @brief desetinných čísel
+ * @brief sčítání desetinných čísel
  */
 TEST(SumTest, DoubleInput) {
     EXPECT_NEAR(sum(1.0005, 1.0005), 2.001, 0.000000001);
 }
 
 /**
- * @brief sečtení nul
+ * @brief sčítání nul
  */
 TEST(SumTest, ZeroInput) {
     EXPECT_NEAR(sum(0., 0.), 0., 0.000000001);
@@ -250,7 +250,7 @@ TEST(IDivTest, MaxIntInput) {
 }
 
 /**
- * @brief jenoduchý faktoriál
+ * @brief jednoduchý faktoriál
  */
 TEST(FactTest, SimpleFactorial) {
     EXPECT_EQ(fact(10), 3628800);
