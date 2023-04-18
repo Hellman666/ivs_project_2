@@ -110,21 +110,31 @@ void MainWindow::on_Dot_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // Ověří se, jestli Display končí číslem
-    if(!std::isdigit(currentText.back().toLatin1())) return;
+    // Vytvoříme pomocnou proměnnou pro poslední číslo nebo operátor v rovnici
+    QString lastNumber;
 
-    if(dot_use == true){
-        return;
+    // Najdeme poslední číslo nebo operátor v rovnici
+    int pos = currentText.length() - 1;
+    while (pos >= 0 && !std::isdigit(currentText[pos].toLatin1()) && currentText[pos] != '.') {
+        lastNumber = currentText[pos] + lastNumber;
+        pos--;
+    }
+    while (pos >= 0 && (std::isdigit(currentText[pos].toLatin1()) || currentText[pos] == '.')) {
+        lastNumber = currentText[pos] + lastNumber;
+        pos--;
     }
 
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
-        // vypsaní . za text v Displayi
+        // Pokud byla tečka již vložena v posledním čísle nebo operátoru, nevkládáme ji znovu
+        if (dot_use && lastNumber.contains('.')) {
+              return;
+        }
         dot_use = true;
-        ui->Display->setText(ui->Display->text() + ".");
-        qDebug() << ".";
+         ui->Display->setText(ui->Display->text() + ".");
+         qDebug() << ".";
     }
-}
+ }
 
 /**
  * @brief definice chování zmáčknutí tlačítka "="
