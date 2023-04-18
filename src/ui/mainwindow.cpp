@@ -37,6 +37,7 @@ bool idiv_use = false;   // příznak //
 bool fact_use = false;   // příznak !
 bool root_use = false;   // příznak root
 bool power_use = false;  // příznak power
+bool dot_use = false;    // příznak .
 
 double value_a;
 double value_b;
@@ -112,9 +113,14 @@ void MainWindow::on_Dot_clicked() {
     // Ověří se, jestli Display končí číslem
     if(!std::isdigit(currentText.back().toLatin1())) return;
 
+    if(dot_use == true){
+        return;
+    }
+
     // Ověří se, jestli není Display prázdný a není to výsledek
     if (!currentText.isEmpty()) {
         // vypsaní . za text v Displayi
+        dot_use = true;
         ui->Display->setText(ui->Display->text() + ".");
         qDebug() << ".";
     }
@@ -298,8 +304,8 @@ void MainWindow::on_Minus_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    // Ověří se, jestli není Display prázdný a není to výsledek
-    if (!currentText.isEmpty() && !currentText.endsWith('-') && !currentText.endsWith('.')) {
+
+    if (!currentText.endsWith('-') && !currentText.endsWith('.')) {
         // vypsaní - za text v Displayi
         ui->Display->setText(ui->Display->text() + "-");
         qDebug() << "-";
