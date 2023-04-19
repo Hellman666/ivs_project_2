@@ -96,7 +96,7 @@ void MainWindow::SymCheck() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    while(!std::isdigit(currentText.back().toLatin1()) && !currentText.endsWith('.')) {
+    while(!std::isdigit(currentText.back().toLatin1()) && !currentText.endsWith('.') && !currentText.endsWith('(')) {
         currentText.remove(currentText.length() - 1, 1);
     }
 
