@@ -11,9 +11,7 @@
 #include "./ui_mainwindow.h"
 #include <QDebug>
 #include <QKeyEvent>
-#include <iostream>
-#include <string>
-#include <cctype>
+
 #include "../includes/math.cpp"
 
 //        /**
@@ -382,7 +380,7 @@ void MainWindow::on_Root_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    if(!std::isdigit(currentText.back().toLatin1()) && !currentText.endsWith('!') && !currentText.endsWith('.')) {
+    if(currentText.isEmpty() || (!std::isdigit(currentText.back().toLatin1()) && !currentText.endsWith('!') && !currentText.endsWith('.'))) {
         // vypsaní √ za text v Displayi
         ui->Display->setText(ui->Display->text() + "√");
         qDebug() << "√";
