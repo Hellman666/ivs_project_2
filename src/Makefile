@@ -36,14 +36,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/includes/%.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir objects
 
-#TODO opravit slozku s testama az bude v src/
 pack:
 	powershell.exe -Command "& { \
 		cd '..' ; \
 		New-Item -ItemType Directory -Force -Path 'xborek12_xhrubo01_xjestr04_xkento00' ; \
 		cd 'xborek12_xhrubo01_xjestr04_xkento00' ; \
 		New-Item -ItemType Directory -Force -Path 'doc', 'install', 'repo' ; \
-		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\src', '..\tests', '..\debugging.png', \
+		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\src', '..\debugging.png', \
 			'..\CMakeLists.txt', '..\dokumentace.pdf', '..\screenshot.png', '..\hodnoceni.txt', \
 			'..\skutecnost.txt', '..\README.md', '..\.gitignore', '..\.git', '..\.editorconfig' \
 			-Destination 'repo' -Force -Recurse ; \
