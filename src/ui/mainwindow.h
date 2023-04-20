@@ -26,7 +26,6 @@ public:
 
 private slots:
     void on_NumberButton_clicked();
-    void SymCheck();
     void on_Dot_clicked();
     void on_Equals_clicked();
     void on_Div_clicked();
@@ -41,6 +40,8 @@ private slots:
     void on_Fact_clicked();
     void on_Clear_clicked();
     void on_Backspace_clicked();
+    QString sym_Check();
+    std::pair<int, int> bracket_Check();
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
