@@ -100,7 +100,7 @@ enable_testing()
 include(GoogleTest)
 include_directories("src/includes/")
 
-add_executable(math_test ./src/includes/math.cpp ./tests/math_test.cpp)
+add_executable(math_test ./src/includes/math.cpp ./src/tests/math_test.cpp)
 target_link_libraries(math_test gtest_main gmock_main)
 gtest_discover_tests(math_test)
 

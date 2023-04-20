@@ -14,7 +14,7 @@
  * Testy pro matematickou knihovnu.
  */
 
-#include "../src/includes/math.h"
+#include "../includes/math.h"
 
 #include <gmock/gmock.h>
 #include <stdio.h>
