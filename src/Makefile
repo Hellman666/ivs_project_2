@@ -36,14 +36,21 @@ $(OBJDIR)/%.o: $(SRCDIR)/includes/%.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir objects
 
-#TODO zabalit tak, aby odpovidalo strukture pro odevzdani
-# ta by mela asi vypadat takto? xborek12_xhrubo01_xjestr04_xkento00.zip/xborek12_xhrubo01_xjestr04_xkento00/doc, /install, /repo
+#TODO opravit slozku s testama az bude v src/
 pack:
 	powershell.exe -Command "& { \
-		Compress-Archive -Path '..\mockup', '..\plan', '..\profiling', '..\src', \
-		'..\debugging.png', '..\dokumentace.pdf', '..\screenshot.png', '..\hodnoceni.txt', \
-		'..\skutecnost.txt', '..\README.md', '..\.gitignore', '..\.editorconfig' \
-		-DestinationPath '..\xborek12_xhrubo01_xjestr04_xkento00.zip' -Force \
+		cd '..' ; \
+		New-Item -ItemType Directory -Force -Path 'xborek12_xhrubo01_xjestr04_xkento00' ; \
+		cd 'xborek12_xhrubo01_xjestr04_xkento00' ; \
+		New-Item -ItemType Directory -Force -Path 'doc', 'install', 'repo' ; \
+		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\src', '..\tests', '..\debugging.png', \
+			'..\CMakeLists.txt', '..\dokumentace.pdf', '..\screenshot.png', '..\hodnoceni.txt', \
+			'..\skutecnost.txt', '..\README.md', '..\.gitignore', '..\.git', '..\.editorconfig' \
+			-Destination 'repo' -Force -Recurse ; \
+		cd '..' ; \
+		Compress-Archive -Path 'xborek12_xhrubo01_xjestr04_xkento00' \
+			-DestinationPath 'xborek12_xhrubo01_xjestr04_xkento00.zip' -Force ; \
+		Remove-Item -Path 'xborek12_xhrubo01_xjestr04_xkento00' -Recurse -Force -ErrorAction SilentlyContinue \
 	}"
 
 # Vycistenie vsetkych nepotrebnych suborov
