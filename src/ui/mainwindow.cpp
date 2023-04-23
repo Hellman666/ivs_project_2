@@ -233,7 +233,7 @@ QString MainWindow::process_Function(QString function) {
 
             int c = 0;
             while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || (function[a+c+1] == '-' && c == 0))) c++;
-            double number2 = convert_Number(function, a+c+1);
+            double number2 = convert_Number(function, a+c+1, c-1);
 
             if(number1 < 0) b++;
 
