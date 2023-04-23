@@ -40,7 +40,9 @@ private slots:
     void on_Fact_clicked();
     void on_Clear_clicked();
     void on_Backspace_clicked();
+    double convert_Number(QString currentText, int a, int b = 0);
     QString sym_Check();
+    QString process_Function(QString function);
     std::pair<int, int> bracket_Check();
 protected:
     void keyPressEvent(QKeyEvent *event) override;
