@@ -244,6 +244,9 @@ QString MainWindow::process_Function(QString function) {
             case '/':
                 function.replace(a-b, b+c+1, QString::number(div(number1, number2)));
                 break;
+            case '//':
+                TODO!!
+                break;
             default:
                 break;
             }
@@ -295,6 +298,12 @@ void MainWindow::on_Equals_clicked() {
         int sequence_Start = 0;
         int sequence_End = 0;
 
+        std::pair<int, int> brackets = bracket_Check();
+        if(brackets.first != brackets.second) {
+            qDebug() << "Chybne zavorky";
+            return;
+        }
+
         while(currentText.contains('!')) {
             int a = currentText.indexOf('!');
             int b = 0;
@@ -312,23 +321,27 @@ void MainWindow::on_Equals_clicked() {
             ui->Display->setText(currentText);
         }
 
-        for(int a = 0; a < currentText.length(); a++) {
-            if(currentText[a] == '/') {
-                if(a+1 < currentText.length() && currentText[a+1] == '/') {
-                    // TODO IDIV
-                } else {
-                    sequence_Start = a;
-                    // TODO DIV
-                }
-            } else if(currentText[a] == '(') {
-                sequence_Start = a;
-                // TODO LEFT_BRACKET
-            } else if(currentText[a] == '^') {
-                sequence_Start = a;
-                // TODO POWER
-            } else if(currentText[a] == '\\') {
-                // TODO ROOT (Good Luck)
-            }
+        while(currentText.contains('^')) {
+            int a = currentText.indexOf('^');
+            int b = 0;
+
+            // TODO POWER
+        }
+
+        while(currentText.contains('\\')) {
+            int a = currentText.indexOf('^');
+            int b = 0;
+
+            // TODO ROOT (Good Luck)
+        }
+
+        while(currentText.contains('(')) {
+            sequence_End = currentText.indexOf(')');
+            sequence_Start = sequence_End-1;
+            while(currentText[sequence_Start-1] != '(') sequence_Start--;
+
+            QString result = process_Function(currentText.mid(sequence_Start, sequence_End-sequence_Start));
+            qDebug() << currentText.replace(sequence_Start-1, sequence_End-sequence_Start+2, result);
         }
 
         ui->Display->setText(process_Function(currentText));
