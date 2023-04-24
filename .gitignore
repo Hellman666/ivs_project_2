@@ -39,5 +39,8 @@ build/*
 src/html/*
 src/latex/*
 
+# Generated pack
+xborek12_xhrubo01_xjestr04_xkento00.zip
+
 # VSCode folder
 .vscode

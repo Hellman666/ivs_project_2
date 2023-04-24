@@ -7,9 +7,9 @@
 #define MyAppURL "https://github.com/Hellman666/ivs_project_2"
 #define MyAppExeName "kalkulacka.exe"
 
-#define OUTPUTDIR "C:\Kalkulacka_install" ; tuhle hodnotu zmìnit
-#define SOURCE "C:\Path\to\repo" ; tuhle hodnotu zmìnit 
-#define SETUPICONFILE SOURCE + "\src\ui\icon.ico"
+#define OUTPUTDIR "xborek12_xhrubo01_xjestr04_xkento00\install"
+#define SOURCE "build\install-exe"
+#define SETUPICONFILE "src\ui\icon.ico"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -48,7 +48,7 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#SOURCE}\build\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SOURCE}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SOURCE}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

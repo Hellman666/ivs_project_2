@@ -8,7 +8,7 @@ all:
 	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build'} ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ."
 
 # Instalace (windeployqt)
-WINDEPLOYQT = 
+WINDEPLOYQT = C:\Qt\6.5.0\mingw_64\bin\windeployqt.exe
 
 # Najdenie suboru obsahujuceho Makefile
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -53,7 +53,12 @@ pack:
 			-Destination 'repo\src' -Force -Recurse ; \
 		Copy-Item -Path '..\src\html', '..\src\latex' \
 			-Destination 'doc' -Force -Recurse ; \
-		cd '..' ; \
+		New-Item -ItemType Directory -Force -Path '..\build\install-exe' ; \
+		Copy-Item -Path '..\build\kalkulacka.exe' -Destination '..\build\install-exe' ; \
+		cd '..\build\install-exe' ; \
+		$(WINDEPLOYQT) kalkulacka.exe ;\
+		ISCC ..\..\inno_setup_script.iss ;\
+		cd '..\..' ; \
 		Compress-Archive -Path 'xborek12_xhrubo01_xjestr04_xkento00' \
 			-DestinationPath 'xborek12_xhrubo01_xjestr04_xkento00.zip' -Force ; \
 		Remove-Item -Path 'xborek12_xhrubo01_xjestr04_xkento00' -Recurse -Force -ErrorAction SilentlyContinue \
