@@ -60,8 +60,5 @@ clean:
 		Remove-Item -Path '..\$(TARGET).exe' -Force -ErrorAction SilentlyContinue \
 	}"
 
-# Vypise napovedu s popisem, co je potreba udelat pred supstenim programu
-help:
-	powershell.exe -Command "& { \
-		Write-Output 'Pred spustenim programu je potreba:'; \
-	}"
+test:
+	./../build/math_test.exe
