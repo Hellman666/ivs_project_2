@@ -40,11 +40,15 @@ pack:
 		cd '..' ; \
 		New-Item -ItemType Directory -Force -Path 'xborek12_xhrubo01_xjestr04_xkento00' ; \
 		cd 'xborek12_xhrubo01_xjestr04_xkento00' ; \
-		New-Item -ItemType Directory -Force -Path 'doc', 'install', 'repo' ; \
-		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\src', '..\debugging.png', \
+		New-Item -ItemType Directory -Force -Path 'doc\src', 'install', 'repo' ; \
+		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\debugging.png', \
 			'..\CMakeLists.txt', '..\dokumentace.pdf', '..\screenshot.png', '..\hodnoceni.txt', \
 			'..\skutecnost.txt', '..\README.md', '..\.gitignore', '..\.git', '..\.editorconfig' \
 			-Destination 'repo' -Force -Recurse ; \
+		Copy-Item -Path (Get-Item -Path '..\src\*' -Exclude ('html', 'latex')).FullName \
+			-Destination 'repo\src' -Force -Recurse ; \
+		Copy-Item -Path '..\src\html', '..\src\latex' \
+			-Destination 'doc' -Force -Recurse ; \
 		cd '..' ; \
 		Compress-Archive -Path 'xborek12_xhrubo01_xjestr04_xkento00' \
 			-DestinationPath 'xborek12_xhrubo01_xjestr04_xkento00.zip' -Force ; \
