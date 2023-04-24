@@ -4,7 +4,6 @@ CFLAGS = -Wall -Werror -O2
 .PHONY: all pack clean run profile help
 
 # Prelozi projekt
-#TODO: prelozeni programu pro profiling
 all:
 	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build'} ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ."
 
@@ -60,8 +59,16 @@ clean:
 		Remove-Item -Path '..\$(TARGET).exe' -Force -ErrorAction SilentlyContinue \
 	}"
 
+#spustí testy matematické knihovny
 test:
 	./../build/math_test.exe
 
+# spustí generování dokumentace
 doc:
 	doxygen Doxyfile
+
+# spustí překlad programu pro výpočet směrodatné odchylky na profiling
+profile:
+	g++ -c profiling.cpp
+	g++ -c includes/math.cpp
+	g++ profiling.o math.o -o profile
