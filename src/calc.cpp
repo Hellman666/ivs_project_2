@@ -1,7 +1,6 @@
 /**
  * @file    calc.cpp
- * @authors Jmeno Prijmneni <xlogin00>,
- *          Jmeno Prijmneni <xlogin00>
+ * @authors Samuel Kentos <xkento00>
  * @version 1.0
  *
  * @section LICENCE

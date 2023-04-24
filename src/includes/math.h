@@ -1,7 +1,7 @@
 /**
  * @file    math.h
  * @authors Radek Jestrabik <xjestr04>,
- *          Jmeno Prijmneni <xkento00>
+ *          Samuel Kentos <xkento00>
  * @version 1.0
  *
  * @section LICENCE
