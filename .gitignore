@@ -35,5 +35,9 @@
 # Build folder
 build/*
 
+# Generated doxygen documentation
+src/html/*
+src/latex/*
+
 # VSCode folder
 .vscode

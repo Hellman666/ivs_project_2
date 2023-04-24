@@ -62,3 +62,6 @@ clean:
 
 test:
 	./../build/math_test.exe
+
+doc:
+	doxygen Doxyfile
