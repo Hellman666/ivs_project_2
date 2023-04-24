@@ -204,6 +204,7 @@ double MainWindow::convert_Number(QString currentText, int a, int b) {
     QString string = "";
     for(int c = 0; c < b; c++) string.append(currentText[a-b+c]);
 
+    int f = 10;
     int int_value = 0;
     double float_value = 0;
     bool double_flag = false;
@@ -215,7 +216,10 @@ double MainWindow::convert_Number(QString currentText, int a, int b) {
 
         int tmp = string[c].digitValue();
         if(double_flag == false) int_value = int_value*10+tmp;
-        else float_value = (float_value+tmp)/10;
+        else {
+            float_value = (float)tmp/f+float_value;
+            f *= 10;
+        }
     }
 
     if(a-b > 0 && currentText[a-b-1] == '-' && (a-b-1 == 0 || (a-b-1 > 0 && !std::isdigit(currentText[a-b-2].toLatin1())))) return -int_value+float_value;
@@ -235,7 +239,7 @@ QString MainWindow::process_Function(QString function) {
         double number1 = convert_Number(function, a, b);
 
         int c = 0;
-        while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || (function[a+c+1] == '-' && c == 0))) c++;
+        while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.' || (function[a+c+1] == '-' && c == 0))) c++;
         double number2 = convert_Number(function, a+c+1, c-1);
 
         if(number1 < 0) b++;
@@ -250,7 +254,7 @@ QString MainWindow::process_Function(QString function) {
         double number1 = convert_Number(function, a, b);
 
         int c = 0;
-        while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.')) c++;
+        while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.' || function[a+c+1] == '.')) c++;
         double number2 = convert_Number(function, a+c+1, c);
 
         function.replace(a-b, b+c+1, QString::number(root(number2, number1)));
@@ -265,10 +269,10 @@ QString MainWindow::process_Function(QString function) {
             int c = 0;
             double number2 = 0;
             if(function[a+1] == '/') {
-                while(a+c+2 < function.length() && (std::isdigit(function[a+c+2].toLatin1()) || (function[a+c+2] == '-' && c == 0))) c++;
+                while(a+c+2 < function.length() && (std::isdigit(function[a+c+2].toLatin1()) || function[a+c+1] == '.' || (function[a+c+2] == '-' && c == 0))) c++;
                 number2 = convert_Number(function, a+c+2, c);
             } else {
-                while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || (function[a+c+1] == '-' && c == 0))) c++;
+                while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.' || (function[a+c+1] == '-' && c == 0))) c++;
                 number2 = convert_Number(function, a+c+1, c);
             }
 
@@ -279,7 +283,8 @@ QString MainWindow::process_Function(QString function) {
                 function.replace(a-b, b+c+1, QString::number(mul(number1, number2)));
                 break;
             case '/':
-                if(function[a+1].toLatin1() == '/') {
+                if(number2 == 0) return "Delení 0";
+                else if(function[a+1].toLatin1() == '/') {
                     std::pair<double, double> result = idiv(number1, number2);
 
                     QString reminder = ui->Rest_of_number->text();
@@ -308,7 +313,7 @@ QString MainWindow::process_Function(QString function) {
             double number1 = convert_Number(function, a, b);
 
             int c = 0;
-            while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || (function[a+c+1] == '-' && c == 0))) c++;
+            while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.' || (function[a+c+1] == '-' && c == 0))) c++;
             double number2 = convert_Number(function, a+c+1);
 
             if(number1 < 0) b++;
@@ -340,7 +345,7 @@ void MainWindow::on_Equals_clicked() {
     QString currentText = ui->Display->text();
 
     // Ověří se, jestli není Display prázdný a není to výsledek
-    if (!currentText.isEmpty()) {
+    if (!currentText.isEmpty() && (isdigit(currentText.back().toLatin1()) || currentText.endsWith(')') || currentText.endsWith('!'))) {
         int sequence_Start = 0;
         int sequence_End = 0;
 
@@ -376,7 +381,12 @@ void MainWindow::on_Equals_clicked() {
             while(currentText[sequence_Start-1] != '(') sequence_Start--;
 
             QString result = process_Function(currentText.mid(sequence_Start, sequence_End-sequence_Start));
-            qDebug() << currentText.replace(sequence_Start-1, sequence_End-sequence_Start+2, result);
+            currentText.replace(sequence_Start-1, sequence_End-sequence_Start+2, result);
+
+            if(result == "Delení 0") {
+                ui->Display->setText(result);
+                return;
+            }
         }
 
         ui->Display->setText(process_Function(currentText));
@@ -496,7 +506,7 @@ void MainWindow::on_Root_clicked() {
     // Do proměnné currentText se nastaví všechen text, který je ve widgetu Display
     QString currentText = ui->Display->text();
 
-    if(currentText.isEmpty() || !currentText.endsWith('.')) {
+    if(!currentText.isEmpty() && isdigit(currentText.back().toLatin1())) {
         // vypsaní √ za text v Displayi
         ui->Display->setText(ui->Display->text() + "√");
         qDebug() << "√";
