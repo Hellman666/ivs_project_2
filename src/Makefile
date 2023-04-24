@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall -Werror -O2
 
-.PHONY: all pack clean run profile help
+.PHONY: all pack clean test run profile
 
 # Prelozi projekt
 all:
