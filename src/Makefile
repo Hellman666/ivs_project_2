@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -O2
 
 # Prelozi projekt
 all:
-	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build'} ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ."
+	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build' } ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ." ; $(WINDEPLOYQT) kalkulacka.exe
 
 # Instalace (windeployqt)
 WINDEPLOYQT = C:\Qt\6.5.0\mingw_64\bin\windeployqt.exe
@@ -75,6 +75,9 @@ clean:
 #spustí testy matematické knihovny
 test:
 	./../build/math_test.exe
+
+run:
+	./../build/kalkulacka.exe
 
 # spustí generování dokumentace
 doc:
