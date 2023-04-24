@@ -1,7 +1,23 @@
-#include<iostream>
+#include <iostream>
+#include "includes/math.h"
 
-int main() {
-	cout << "Sample profiling source code" << endl;
-	return 0;
+double vypocet_prumeru(double arr[], double size) {
+    double s = 0;
+    for (int i = 0; i < size; ++i) s = sum(s, arr[i]);
+    return div(s, size);
 }
 
+double vypocet_smerodatne_odchylky(double arr[], double size) {
+    double prumer = mul(size, power(vypocet_prumeru(arr, size), 2));
+    double s = 0;
+    for (int i = 0; i < size; ++i) s = sum(s, power(arr[i], 2));
+    return root(mul(sub(s, prumer), size-1), 2);
+}
+
+int main() {
+    double numbers[] = {1, 2, 3, 4, 5};
+    double size = div((double)sizeof(numbers), (double)sizeof(numbers[0]));
+    double smerodatna_odchylka = vypocet_smerodatne_odchylky(numbers, size);
+    std::cout << "Odchylka: " << smerodatna_odchylka << std::endl;
+    return 0;
+}
