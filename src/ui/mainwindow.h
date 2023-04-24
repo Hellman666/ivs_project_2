@@ -44,10 +44,15 @@ private slots:
     QString sym_Check();
     QString process_Function(QString function);
     std::pair<int, int> bracket_Check();
+    void on_Help_triggered();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
     Ui::MainWindow *ui;
+    QMenuBar *menuBar;
+    QMenu *fileMenu;
+    QAction *openAction;
 };
 #endif // MAINWINDOW_H

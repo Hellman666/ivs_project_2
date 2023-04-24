@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>659</height>
+    <width>362</width>
+    <height>678</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -978,6 +978,28 @@ QPushButton:pressed {
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>362</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="Options">
+    <property name="title">
+     <string>Možnosti</string>
+    </property>
+    <addaction name="Help"/>
+   </widget>
+   <addaction name="Options"/>
+  </widget>
+  <action name="Help">
+   <property name="text">
+    <string>Nápověda</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

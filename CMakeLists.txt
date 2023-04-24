@@ -36,6 +36,9 @@ set(PROJECT_SOURCES
         src/ui/mainwindow.cpp
         src/ui/mainwindow.h
         src/ui/mainwindow.ui
+        src/ui/help.h
+        src/ui/help.cpp
+        src/ui/resource.qrc
 
         ${TS_FILES}
 )
@@ -45,6 +48,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
+
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET kalkulacka APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)

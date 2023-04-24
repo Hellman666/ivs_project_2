@@ -75,6 +75,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+
 /**
  * @brief definice chování zmáčknutí tlačítek
  */
@@ -212,7 +213,7 @@ double MainWindow::convert_Number(QString currentText, int a, int b) {
         if(string[c] == '.') {
             double_flag = true;
             continue;
-        }
+        } else if(string[c] == '-') continue;
 
         int tmp = string[c].digitValue();
         if(double_flag == false) int_value = int_value*10+tmp;
@@ -222,7 +223,7 @@ double MainWindow::convert_Number(QString currentText, int a, int b) {
         }
     }
 
-    if(a-b > 0 && currentText[a-b-1] == '-' && (a-b-1 == 0 || (a-b-1 > 0 && !std::isdigit(currentText[a-b-2].toLatin1())))) return -int_value+float_value;
+    if(currentText[a-b] == '-') return -int_value+float_value;
     else return int_value+float_value;
 }
 
@@ -263,7 +264,7 @@ QString MainWindow::process_Function(QString function) {
     for(int a = 0; a < function.length(); a++) {
         if(function[a] == '*' || function[a] == '/') {
             int b = 0;
-            while(a-b > 0 && (std::isdigit(function[a-b-1].toLatin1()) || function[a-b-1] == '.')) b++;
+            while(a-b > 0 && (std::isdigit(function[a-b-1].toLatin1()) || function[a-b-1] == '.' || function[a-b-1] == '-')) b++;
             double number1 = convert_Number(function, a, b);
 
             int c = 0;
@@ -275,8 +276,6 @@ QString MainWindow::process_Function(QString function) {
                 while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.' || (function[a+c+1] == '-' && c == 0))) c++;
                 number2 = convert_Number(function, a+c+1, c);
             }
-
-            if(number1 < 0) b++;
 
             switch (function[a].toLatin1()) {
             case '*':
@@ -309,14 +308,12 @@ QString MainWindow::process_Function(QString function) {
     for(int a = 0; a < function.length(); a++) {
         if(a != 0 && (function[a] == '+' || function[a] == '-')) {
             int b = 0;
-            while(a-b > 0 && (std::isdigit(function[a-b-1].toLatin1()) || function[a-b-1] == '.')) b++;
+            while(a-b > 0 && (std::isdigit(function[a-b-1].toLatin1()) || function[a-b-1] == '.' || function[a-b-1] == '-')) b++;
             double number1 = convert_Number(function, a, b);
 
             int c = 0;
             while(a+c+1 < function.length() && (std::isdigit(function[a+c+1].toLatin1()) || function[a+c+1] == '.' || (function[a+c+1] == '-' && c == 0))) c++;
             double number2 = convert_Number(function, a+c+1);
-
-            if(number1 < 0) b++;
 
             switch (function[a].toLatin1()) {
             case '+':
