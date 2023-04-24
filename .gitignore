@@ -28,6 +28,9 @@
 *.out
 *.app
 
+# Temporary files
+*.tmp
+
 # Environment files
 *.env.*
 *.user
