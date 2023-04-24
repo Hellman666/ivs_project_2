@@ -7,6 +7,9 @@ CFLAGS = -Wall -Werror -O2
 all:
 	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build'} ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ."
 
+# Instalace (windeployqt)
+WINDEPLOYQT = 
+
 # Najdenie suboru obsahujuceho Makefile
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 
@@ -35,12 +38,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/includes/%.cpp | $(OBJDIR)
 $(OBJDIR):
 	mkdir objects
 
+# zabalí projekt tak, aby mohl být odevzdán
 pack:
 	powershell.exe -Command "& { \
 		cd '..' ; \
 		New-Item -ItemType Directory -Force -Path 'xborek12_xhrubo01_xjestr04_xkento00' ; \
 		cd 'xborek12_xhrubo01_xjestr04_xkento00' ; \
-		New-Item -ItemType Directory -Force -Path 'doc\src', 'install', 'repo' ; \
+		New-Item -ItemType Directory -Force -Path 'doc', 'install', 'repo' ; \
 		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\debugging.png', \
 			'..\CMakeLists.txt', '..\dokumentace.pdf', '..\screenshot.png', '..\hodnoceni.txt', \
 			'..\skutecnost.txt', '..\README.md', '..\.gitignore', '..\.git', '..\.editorconfig' \
