@@ -26,11 +26,21 @@ Podivejte se na General Public License GNU pro vice informaci na adrese https://
         - V instalaci zvolit možnosti pro MinGW 64
 - Nastavení proměnných v souboru .env.cmake (ukázka v CMakeLists.txt)
 - Vytvoření prázdné složky build
-- Ve složce build:
-    - cmake .. -G "Ninja"
-    - cmake --build .
+1. Možnost:
+   - Vytvoření prázdné složky build
+   - Ve složce build:
+       - `cmake .. -G "Ninja"`
+       - `cmake --build .`
+2. Možnost:
+   - Ve složce src:
+     - Spuštění příkazu `make all`
 
 # Spuštění
 ----------
-- Ve složce build:
-    - math_test.exe
+1. Možnost:
+   - Ve složce build:
+       - `.\math_test.exe`
+2. Možnost:
+   - Ve složce src:
+     - `make test`
+
