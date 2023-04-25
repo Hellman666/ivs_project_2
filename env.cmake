@@ -1,0 +1,1 @@
+STRING(STRIP "C:/Qt/6.4.3/mingw_64" QT_MINGW_PATH)

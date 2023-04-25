@@ -8,7 +8,7 @@ all:
 	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build' } ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ." ; $(WINDEPLOYQT) kalkulacka.exe
 
 # Instalace (windeployqt)
-WINDEPLOYQT = C:\Qt\6.5.0\mingw_64\bin\windeployqt.exe
+WINDEPLOYQT = C:/Qt/6.4.3/mingw_64/bin/windeployqt.exe
 
 # Najdenie suboru obsahujuceho Makefile
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -46,7 +46,7 @@ pack:
 		cd 'xborek12_xhrubo01_xjestr04_xkento00' ; \
 		New-Item -ItemType Directory -Force -Path 'doc', 'install', 'repo' ; \
 		Copy-Item -Path '..\plan', '..\mockup', '..\profiling', '..\debugging.png', \
-			'..\CMakeLists.txt', '..\dokumentace.pdf', '..\screenshot.png', '..\hodnoceni.txt', \
+                        '..\CMakeLists.txt', '..\dokumentace.pdf', '..\inno_setup_script.iss', '..\screenshot.png', '..\hodnoceni.txt', \
 			'..\skutecnost.txt', '..\README.md', '..\.gitignore', '..\.git', '..\.editorconfig' \
 			-Destination 'repo' -Force -Recurse ; \
 		Copy-Item -Path (Get-Item -Path '..\src\*' -Exclude ('html', 'latex')).FullName \

@@ -9,7 +9,7 @@
 
 #define OUTPUTDIR "xborek12_xhrubo01_xjestr04_xkento00\install"
 #define SOURCE "build\install-exe"
-#define SETUPICONFILE "src\ui\icon.ico"
+#define SETUPICONFILE "src\ui\img\icon.ico"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
