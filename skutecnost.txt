@@ -1,1 +1,47 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+Rozdíl mezi plánem projektu a skutečností:
+Plán:
+	přidělení úkolů:
+	xborek12
+		- návrh grafického rozhraní
+		- implementace grafického rohraní
+		- dokumentace
+
+	xjestr04
+		- implementace matematických funkcí
+		- debugging matematické funkce
+		- dokumentace
+
+	xhrubo01
+		- testy matematických funkcí
+		- debugging matematické funkce
+		- dokumentace
+
+	xkento00
+		- hlavicka matematických funkcí
+		- profiling
+		- dokumentace
+Skutečnost:
+	xborek12
+		- návrh grafického rozhraní
+		- implementace grafického rozhraní
+		- propojení GUI s matematickou knihovnou
+		- dokumentace
+		- testování aplikace
+		- debugging aplikace
+	xjestr04
+		- implementace matematických funkcí
+		- Makefile
+		- debugging - matematické knihovny
+		- doxyfile
+		- dokumentace
+	xhrubo01
+		- testy matematických funkcí
+		- debugging matematické funkce
+		- dokumentace
+		- propojení GUI s matematickou knihovnou
+		- uživatelská dokumentace
+		- instalační a odinstalační soubory	
+	xkento00
+		- hlavicka matematických funkcí
+		- profiling
+		- debugging - aplikace	

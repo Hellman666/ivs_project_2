@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xborek12 120 (Moqupy, GUI, propojení GUI s matematickou knihovnou, debugging-aplikace, testování aplikace)
+xhrubo01 120 (Testy matematické knihovny, propojení GUI s matematickou knihovnou, uživatelská dokumentace, instalační a odinstalační soubory)
+xjestr04 120 (Implementace matematických funkcí, Makefile, debugging-matematické knihovny, doxyfile)
+xkento00 40 (Hlavičky matematických funkcí, profiling, debugging-aplikace)
