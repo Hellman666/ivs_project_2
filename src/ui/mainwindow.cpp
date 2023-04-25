@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->menuBar->setStyleSheet("QMenuBar {background-color: #284b63; color: white;} QMenuBar::item:selected{background-color: #3c6e71; color: white;}");
     ui->Options->setStyleSheet("QMenu::item {background-color: #284b63; color: white;"
                                "} QMenu::item:selected{background-color: #3c6e71; color: white;}");
-
+    setWindowIcon(QIcon(":/resources/img/icon.ico"));
 
     connect(ui->Number0, &QPushButton::clicked, this, &MainWindow::on_NumberButton_clicked);
     connect(ui->Number1, &QPushButton::clicked, this, &MainWindow::on_NumberButton_clicked);
