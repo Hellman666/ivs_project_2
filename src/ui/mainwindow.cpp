@@ -14,19 +14,6 @@
 #include "help.h"
 #include "../includes/math.cpp"
 
-//        /**
-//            * @file mainwindow.cpp
-//            * @brief = stručný popis funkce/souboru
-//            * @author = autor
-//            * @date = datum
-//            * @param = parametr
-//            * @param
-//            * @param
-//            * ...
-//            * @return co to vrací
-//            * @see - pokud je tam odkaz na nějakou funkci, tak můžu dát odkaz na tu funkci
-//        */
-
 bool plus_use = false;   // příznak +
 bool minus_use = false;  // příznak -
 bool mul_use = false;    // příznak *
@@ -151,6 +138,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
 
 /**
  * @brief definice chování zmáčknutí tlačítka [0-9]
+ * @return void
  */
 void MainWindow::on_NumberButton_clicked() {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
