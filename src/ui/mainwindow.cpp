@@ -54,8 +54,9 @@ MainWindow::MainWindow(QWidget* parent)
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     ui->Rest_of_number->setStyleSheet("QLineEdit {color: white; background-color: #284b63; padding: 10px; color: white; border-width: 2px; border-radius: 15px; border-color: #b8cbd8; }");
     ui->Display->setStyleSheet("QLineEdit {color: white; background-color: #284b63; padding: 10px; color: white; border-style: outset; border-width: 2px; border-radius: 15px; border-color: #b8cbd8; }");
-    ui->menuBar->setStyleSheet("QMenuBar {background-color: #284b63; color: white; border-style: outset; border-width: 1px;  border-color: blacks} QMenuBar::item:selected{background-color: #3c6e71; color: white;}");
-    ui->Options->setStyleSheet("QMenu::item {background-color: #284b63; color: white;} QMenu::item:selected{background-color: #3c6e71; color: white;}");
+    ui->menuBar->setStyleSheet("QMenuBar {background-color: #284b63; color: white;} QMenuBar::item:selected{background-color: #3c6e71; color: white;}");
+    ui->Options->setStyleSheet("QMenu::item {background-color: #284b63; color: white;"
+                               "} QMenu::item:selected{background-color: #3c6e71; color: white;}");
 
 
     connect(ui->Number0, &QPushButton::clicked, this, &MainWindow::on_NumberButton_clicked);
