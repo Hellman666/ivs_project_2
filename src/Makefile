@@ -85,6 +85,6 @@ doc:
 
 # spustí překlad programu pro výpočet směrodatné odchylky na profiling
 profile:
-	g++ -c profiling.cpp
-	g++ -c includes/math.cpp
-	g++ profiling.o math.o -o profile
+	g++ -c profiling.cpp -static-libstdc++
+	g++ -c includes/math.cpp -static-libstdc++
+	g++ profiling.o math.o -o profile -static-libstdc++

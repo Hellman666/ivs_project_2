@@ -18,14 +18,20 @@ at uz verze 3 teto licence, nebo jakékoli pozdější verze.
 
 Podivejte se na General Public License GNU pro vice informaci na adrese https://www.gnu.org/copyleft/gpl.html.
 
-# Build
--------
-
+# Prerekvizity
+--------------
+- Nainstalovaný Powershell
 - Stažení Qt Open Source:
     - Na stránce [QT Open Source - Download](https://www.qt.io/download-open-source) stažení instalátoru
-        - V instalaci zvolit možnosti pro MinGW 64
+        - V instalaci zvolit možnosti pro MinGW 64 
+- Stažení Inno Setup
+    - Na stránce [Inno Setup Download](https://jrsoftware.org/isdl.php) stažení instalátoru (innosetup-6.2.2.exe)
+    - Přidat Inno Setup program (ISCC.exe) do PATH
+- V Makefile na řádku 11 nastavení proměnné na cestu k programu windeployqt.exe (součást QT)
 - Nastavení proměnných v souboru .env.cmake (ukázka v CMakeLists.txt)
-- Vytvoření prázdné složky build
+
+# Build
+-------
 1. Možnost:
    - Vytvoření prázdné složky build
    - Ve složce build:
