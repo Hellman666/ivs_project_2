@@ -68,8 +68,8 @@ pack:
 clean:
 	powershell.exe -Command "& { \
 		Remove-Item -Path '..\build' -Recurse -Force -ErrorAction SilentlyContinue ; \
-		Remove-Item -Path '..\$(OBJDIR)\*.o' -Force -ErrorAction SilentlyContinue ; \
-		Remove-Item -Path '..\$(TARGET).exe' -Force -ErrorAction SilentlyContinue \
+		Remove-Item -Path '$(abspath .)\*.exe' -Force -ErrorAction SilentlyContinue ; \
+		Remove-Item -Path '$(abspath .)\*.o' -Force -ErrorAction SilentlyContinue \
 	}"
 
 #spustí testy matematické knihovny
