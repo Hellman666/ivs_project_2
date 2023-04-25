@@ -3,12 +3,15 @@ CFLAGS = -Wall -Werror -O2
 
 .PHONY: all pack clean test run profile
 
-# Prelozi projekt
-all:
-	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build' } ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ." ; $(WINDEPLOYQT) kalkulacka.exe
-
 # Instalace (windeployqt)
 WINDEPLOYQT = C:/Qt/6.4.3/mingw_64/bin/windeployqt.exe
+
+# Prelozi projekt
+all: 
+	powershell.exe -Command "& {New-Item -ItemType Directory -Force -Path '..\build' } ; cd ..\build ; cmake .\.. -G "Ninja"; cmake --build ." ; $(WINDEPLOYQT) "..\build\kalkulacka.exe"
+	g++ -c profiling.cpp -static-libstdc++
+	g++ -c includes/math.cpp -static-libstdc++
+	g++ profiling.o math.o -o profile -static-libstdc++
 
 # Najdenie suboru obsahujuceho Makefile
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -85,6 +88,4 @@ doc:
 
 # spustí překlad programu pro výpočet směrodatné odchylky na profiling
 profile:
-	g++ -c profiling.cpp -static-libstdc++
-	g++ -c includes/math.cpp -static-libstdc++
-	g++ profiling.o math.o -o profile -static-libstdc++
+	./profile < ../profiling/data.txt
